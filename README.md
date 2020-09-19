@@ -20,3 +20,5 @@ Adding a new page:
 
 Adding new dependencies:
 * `npm install pkg --save`
+
+Matthew is a genius
