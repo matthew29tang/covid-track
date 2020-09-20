@@ -35,10 +35,35 @@ class TreeMap extends React.Component {
 
   constructor(props, context) {
     super(props);
-    console.log(context.data);
+    this.DATA = context.data;
+    this.DELTAS = [[], []];
+    for (var dataset = 0; dataset < 2; dataset++) {
+      for (var row = 0; row < this.DATA[dataset].length; row++) {
+        // Add Continent, Country
+        this.DELTAS[dataset].push([this.DATA[dataset][row][dataset]]);
+        if (dataset === 1) {
+          this.DELTAS[dataset][row].unshift([this.DATA[dataset][row][0]]);
+        }
+        // Calculate deltas
+        for (var col = 2 + dataset; col < this.DATA[dataset][row].length; col++) {
+          var curr = this.DATA[dataset][row][col] - this.DATA[dataset][row][col - 1];
+          var res = 1;
+          if (curr === 0) {
+            res = 0;
+          } else if (this.DATA[dataset][row][col - 1] === 0) {
+            res = 1;
+          } else {
+            res = Math.round(curr / this.DATA[dataset][row][col - 1] * 100) / 100;
+          }
+          this.DELTAS[dataset][row].push(res);
+        }
+      }
+    }
+    
+    console.log(this.DELTAS);
     this.state = {
       hoveredNode: false,
-      treemapData: this.getData(0),
+      treemapData: this.getData(0, 0),
       useCirclePacking: false,
       granularity: 0,
       query: [],
@@ -51,14 +76,16 @@ class TreeMap extends React.Component {
   }
 
   //Granularity: 0: Continent, 1: Country
-  getData = (granularity) => {
-    var data = this.state ? DATA[granularity] : DATA[0];
+  getData = (granularity, week) => {
+    var data = this.state ? this.DELTAS[granularity] : this.DELTAS[0];
     const leaves = [];
     for (let i = 0; i < data.length; i++) {
-      if (granularity === 0 || (granularity > 0 && this.state.query[this.state.query.length - 1].includes(data[i][granularity - 1]))) {
+      if (granularity === 0 || (granularity > 0 && this.state.query[this.state.query.length - 1].includes(data[i][0]))) {
+        var cases = data[i][1 + granularity + week];
+        console.log(data[i])
         leaves.push({
-          name: data[i][granularity] + ' (' + data[i][1 + granularity] + ')',
-          size: data[i][1 + granularity] * 1000,
+          name: data[i][granularity] + ' (' + cases + ')',
+          size: Math.log(cases + 1) + 1,
           color: this._getColor(),
           style: {
             border: 'thin solid blue'
@@ -75,7 +102,7 @@ class TreeMap extends React.Component {
 
   changeData = (delta, hoveredNode) => {
     // Validate delta
-    if ((delta < 0 && this.state.granularity === 0) || (delta > 0 && this.state.granularity === DATA.length - 1)) {
+    if ((delta < 0 && this.state.granularity === 0) || (delta > 0 && this.state.granularity === this.DELTAS.length - 1)) {
       return;
     }
 
@@ -90,7 +117,7 @@ class TreeMap extends React.Component {
     this.setState((prevState) => {
       return {
         granularity: prevState.granularity + delta,
-        treemapData: this.getData(prevState.granularity + delta),
+        treemapData: this.getData(prevState.granularity + delta, prevState.week),
       }
     });
   }
@@ -114,14 +141,24 @@ class TreeMap extends React.Component {
     };
     return (
       <div className="treemap">
-        <MuiSlider dates={dates} onChange={(event, newValue) => this.setState({week: newValue})}/>
+        <MuiSlider dates={dates}
+          onChange={(event, newValue) => {
+            if (newValue !== this.state.week) {
+              this.setState({
+                week: newValue,
+                treemapData: this.getData(this.state.granularity, newValue)
+              })
+            }
+          }
+          }/>
+
         <Button variant="contained" color="primary" className={classes.button}
           onClick={() => this.setState({ useCirclePacking: !useCirclePacking })}
         >{this.state.useCirclePacking ? "Square View" : "Circle View"}</Button>
         <br />
         <Treemap {...treeProps} colorType='literal' />
         {hoveredNode && hoveredNode.data && hoveredNode.data.name}
-        <br/>
+        <br />
         <Button variant="contained" color="primary" className={classes.button}
           onClick={() => this.changeData(-1, null)} disabled={this.state.granularity === 0}
         >Back</Button>
