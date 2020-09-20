@@ -1,5 +1,5 @@
 {
-  "name": "covid-track",
+  "name": "covisualize",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://matthew29tang.github.io/covid-track/"
+  "homepage": "https://matthew29tang.github.io/covisualize/"
 }
