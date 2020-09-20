@@ -51,9 +51,6 @@ class App extends React.Component {
                 <NavLink activeClassName="active" className="link" to={"/treemap/"} type="menu" style={{ marginRight: '10px' }}>
                   <Button color="inherit">Treemap</Button>
                 </NavLink>
-                <NavLink activeClassName="active" className="link" to={"/plot/"} type="menu" style={{ marginRight: '10px' }}>
-                  <Button color="inherit">Plot</Button>
-                </NavLink>
               </Router>
             </Toolbar>
           </AppBar>

@@ -55,7 +55,7 @@ export default function MuiSlider(props) {
             getAriaValueText={(value) => `${value}`}
             aria-labelledby="discrete-slider-restrict"
             step={1}
-            min={3}
+            min={0}
             max={props.dates.length - 1}
             valueLabelDisplay="auto"
             marks={marks}

@@ -3,6 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Treemap } from 'react-vis';
 import Button from '@material-ui/core/Button';
 import MuiSlider from './MuiSlider.js';
+import Grid from '@material-ui/core/Grid';
+import Plot from './Plot.js';
 
 import { dates, ThemeContext } from '../data/data.js';
 
@@ -59,7 +61,7 @@ class TreeMap extends React.Component {
         }
       }
     }
-    
+
     console.log(this.DELTAS);
     this.state = {
       hoveredNode: false,
@@ -150,19 +152,27 @@ class TreeMap extends React.Component {
               })
             }
           }
-          }/>
+          } />
 
         <Button variant="contained" color="primary" className={classes.button}
           onClick={() => this.setState({ useCirclePacking: !useCirclePacking })}
         >{this.state.useCirclePacking ? "Square View" : "Circle View"}</Button>
         <br />
-        <Treemap {...treeProps} colorType='literal' />
-        {hoveredNode && hoveredNode.data && hoveredNode.data.name}
+        <Grid container spacing={0} justify="center" alignItems="center">
+          <Grid item xs={4}>
+            <Treemap {...treeProps} colorType='literal' />
+          </Grid>
+          <Grid item xs={1} />
+          <Grid item xs={7}>
+            <Plot />
+          </Grid>
+          
+        </Grid>
         <br />
         <Button variant="contained" color="primary" className={classes.button}
           onClick={() => this.changeData(-1, null)} disabled={this.state.granularity === 0}
         >Back</Button>
-        {this.state.week}
+
       </div>
     );
   }
