@@ -1,5 +1,7 @@
 import React from "react";
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, Circle } from "react-google-maps";
+import MuiSlider from "./MuiSlider.js";
+import { dates } from "../data/data.js";
 
 import styles from './GoogleMapsStyles.js';
 
@@ -31,7 +33,6 @@ function MapSetUp() {
             fontWeight: 'bold',
             fontSize: '12px',
             text: String(country[3]),
-            scale: numDigits(country[3])
           }}
         />
       ))}
@@ -43,13 +44,24 @@ const WrappedMap = withScriptjs(withGoogleMap(MapSetUp));
 
 export default function Map() { 
     return (
-
-        <WrappedMap 
+        <div>
+          <WrappedMap 
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `84vh`}} />}
           mapElement={<div style={{ height: `84vh`, }} />}
         />
+          <MuiSlider dates={dates}
+          onChange={(event, newValue) => {
+            if (newValue !== this.state.week) {
+              this.setState({
+                week: newValue,
+                treemapData: this.getData(this.state.granularity, newValue)
+              })
+            }
+          }
+          }/>
+        </div>
 
     );
 }
