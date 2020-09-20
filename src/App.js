@@ -11,7 +11,6 @@ import {
   HashRouter as Router,
   NavLink
 } from "react-router-dom";
-import Button from '@material-ui/core/Button';
 
 import { ThemeContext } from './data/data.js';
 
@@ -46,11 +45,11 @@ class App extends React.Component {
           <AppBar position="static" >
             <Toolbar>
               <Router>
-                <div style={{ flex: 1, fontSize: "19px", marginLeft: "100px" }}><NavLink activeClassName="active" className="link" to={"/"} type="menu">CoVisualize</NavLink></div>
-
+                <div style={{ flex: 1, fontSize: "19px" }}><NavLink activeClassName="active" className="link" to={"/"} type="menu">CoVisualize</NavLink></div>
+                {/*
                 <NavLink activeClassName="active" className="link" to={"/treemap/"} type="menu" style={{ marginRight: '10px' }}>
                   <Button color="inherit">Treemap</Button>
-                </NavLink>
+                </NavLink> */}
               </Router>
             </Toolbar>
           </AppBar>

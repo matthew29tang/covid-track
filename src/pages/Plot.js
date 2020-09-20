@@ -4,7 +4,7 @@ import Styled from "styled-components";
 import { dates, ThemeContext } from '../data/data.js';
 import Grid from '@material-ui/core/Grid';
 
-import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, MarkSeries, DiscreteColorLegend } from 'react-vis';
+import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, MarkSeries, DiscreteColorLegend, Crosshair } from 'react-vis';
 
 export default class Plotter extends React.Component {
   static contextType = ThemeContext;
@@ -17,7 +17,7 @@ export default class Plotter extends React.Component {
     this.dates.push('9/28/2020');
     this.state = {
     };
-    this.toGraph =  this.graph(this.props.granularity, this.props.query);
+    this.toGraph = this.graph(this.props.granularity, this.props.query);
   }
 
   componentDidUpdate(prevProps) {
@@ -25,7 +25,7 @@ export default class Plotter extends React.Component {
       this.toGraph = this.graph(this.props.granularity, this.props.query);
       console.log("updated")
     }
-    
+
   }
 
   formatData = (granularity, query) => {
@@ -53,7 +53,7 @@ export default class Plotter extends React.Component {
       return
     }
     var formatted = this.formatData(granularity, query);
-    
+
     this.setState({
       lines: formatted[0],
     });

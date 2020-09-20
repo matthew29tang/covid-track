@@ -16,9 +16,7 @@ class Routing extends React.Component {
       <Router>
         <div className="Router">
           <Switch>
-            <Route exact path="/" component={Map} />
-            <Route path="/treemap/" component={TreeMap} />
-            <Route path="/plot/" component={Plot} />
+            <Route exact path="/" component={TreeMap} />
             <Route component={Notfound} />
           </Switch>
         </div>

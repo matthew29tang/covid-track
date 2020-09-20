@@ -52,7 +52,7 @@ class TreeMap extends React.Component {
           var res = 1;
           if (curr === 0) {
             res = 0;
-          } else if (this.DATA[dataset][row][col - 1] == "0") {
+          } else if (this.DATA[dataset][row][col - 1] === "0") {
             res = 1;
           } else {
             res = Math.round(curr / this.DATA[dataset][row][col - 1] * 100) / 100;
@@ -160,7 +160,6 @@ class TreeMap extends React.Component {
         <br />
         <Grid container spacing={0} justify="center" alignItems="center">
           <Grid item xs={4}>
-
             <Button variant="contained" color="primary" className={classes.button} style={{ marginLeft: '100px' }}
               onClick={() => this.changeData(-1, null)} disabled={this.state.granularity === 0}
             >Back</Button>
@@ -170,6 +169,7 @@ class TreeMap extends React.Component {
             >{this.state.useCirclePacking ? "Square View" : "Circle View"}</Button>
 
             <Treemap {...treeProps} colorType='literal' sortFunction={(a, b) => b.value - a.value} />
+            
           </Grid>
           <Grid item xs={1} />
           <Grid item xs={7}>
@@ -177,9 +177,12 @@ class TreeMap extends React.Component {
           </Grid>
 
         </Grid>
-        <br />
-
-
+        The rectangle plot illustrates regions where COVID is spreading the fastest. Rectangle size is correlated with the rate of increase of cases between weeks. 
+        
+        <br /><br />
+        The right graph shows the total cummulative cases over time.
+        <br /><br />
+        Panel Data taken from: CSSEGISandData (JHU)
       </div>
     );
   }
