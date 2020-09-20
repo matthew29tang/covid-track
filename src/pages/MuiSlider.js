@@ -22,10 +22,10 @@ const useStyles = makeStyles(theme => ({
 
 function getMarks(dates) {
   var marks = [];
-  for (var i = 0; i < dates.length; i++) {
+  for (var i = 0; i < dates.length - 1; i++) {
       marks.push({
         value: i,
-        label: (i % 2 === 0  ? dates[i].slice(0, -5) : '')
+        label: (i % 2 === 0  ? dates[i + 1].slice(0, -5) : '')
       });
   }
   return marks;
@@ -56,7 +56,7 @@ export default function MuiSlider(props) {
             aria-labelledby="discrete-slider-restrict"
             step={1}
             min={0}
-            max={props.dates.length - 1}
+            max={props.dates.length - 2}
             valueLabelDisplay="auto"
             marks={marks}
             onChange={props.onChange}

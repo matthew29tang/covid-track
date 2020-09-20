@@ -12,14 +12,20 @@ export default class Plotter extends React.Component {
   constructor(props, context) {
     super(props);
     this.DATA = context.data;
-    var formatted = this.formatData(1, ['North America']);
     this.dates = dates.slice();
     this.dates.push('9/21/2020');
     this.dates.push('9/28/2020');
     this.state = {
-      lines: formatted[0],
-      graphData: formatted[1]
     };
+    this.toGraph =  this.graph(this.props.granularity, this.props.query);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.granularity !== this.props.granularity) {
+      this.toGraph = this.graph(this.props.granularity, this.props.query);
+      console.log("updated")
+    }
+    
   }
 
   formatData = (granularity, query) => {
@@ -29,7 +35,7 @@ export default class Plotter extends React.Component {
     for (let i = 0; i < data.length; i++) { // Each country
       if (granularity === 0 || (granularity > 0 && query[query.length - 1].includes(data[i][0]))) {
         var curr = []
-        for (let j = granularity + 1; j < data[i].length; j++) { // Each point in time for that country
+        for (let j = granularity + 3; j < data[i].length; j++) { // Each point in time for that country
           curr.push({
             x: j,
             y: Math.log(parseInt(data[i][j]) + 1)
@@ -40,6 +46,21 @@ export default class Plotter extends React.Component {
       }
     }
     return [lines, graphData];
+  }
+
+  graph = (granularity, query) => {
+    if (this.state.granularity === granularity) {
+      return
+    }
+    var formatted = this.formatData(granularity, query);
+    
+    this.setState({
+      lines: formatted[0],
+    });
+    return formatted[1].map((series, i) =>
+      <LineSeries className="series" key={i}
+        curve={curveCatmullRom.alpha(0.5)}
+        data={formatted[1][i]} />);
   }
 
   render() {
@@ -61,18 +82,14 @@ export default class Plotter extends React.Component {
               />
               <YAxis title="COVID19 Cases in Region (Log)" />
 
-              {this.state.graphData.map((series, i) =>
-                <LineSeries className="series" key={i}
-                  curve={curveCatmullRom.alpha(0.5)}
-                  data={this.state.graphData[i]}
-                />
-              )}
+              {this.toGraph}
+
             </XYPlot>
           </Wrapper>
         </Grid>
-        <Grid item xs={6}/>
+        <Grid item xs={6} />
         <Grid item xs={1}>
-          <DiscreteColorLegend height={350} width={100} items={this.state.lines} />
+          <DiscreteColorLegend height={350} width={100} items={this.state.lines ? this.state.lines : []} />
         </Grid>
       </Grid>
     );
@@ -136,34 +153,3 @@ const Wrapper = Styled.section`
   }
 }
 `;
-
-// const styles = theme => ({
-// });
-
-// class Plot extends React.Component {
-//   constructor() {
-//     super();
-//   }
-
-//   render() {
-//     return (
-//       // <p>Hello World</p>
-//       <XYPlot
-//         width={300}
-//         height={300}>
-//         <HorizontalGridLines />
-//         <LineSeries
-//           data={[
-//             {x: 1, y: 10},
-//             {x: 2, y: 5},
-//             {x: 3, y: 15}
-//           ]}/>
-//         <XAxis />
-//         <YAxis />
-//       </XYPlot>
-//     )
-//   }
-// }
-
-
-// // export default withStyles(styles)(Plot);
