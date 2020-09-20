@@ -20,5 +20,9 @@ function colorIntensity(increase) {
     let G = g.toString(16);
     let B = b.toString(16);
 
+    if (R == "0") R += "0";
+    if (G == "0") G += "0";
+    if (B == "0") B += "0";
+
     return "#" + R + G + B;
 }
