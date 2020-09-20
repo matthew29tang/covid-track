@@ -2,6 +2,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Treemap } from 'react-vis';
 import Button from '@material-ui/core/Button';
+import MuiSlider from './MuiSlider.js';
+
+import { dates } from '../data/data.js';
 
 var countryData = [
   ['North America', 'United States', '30', '50'],
@@ -36,6 +39,7 @@ class TreeMap extends React.Component {
       useCirclePacking: false,
       granularity: 0,
       query: [],
+      week: 0,
     };
   }
 
@@ -86,7 +90,6 @@ class TreeMap extends React.Component {
         treemapData: this.getData(prevState.granularity + delta),
       }
     });
-
   }
 
   render() {
@@ -108,9 +111,10 @@ class TreeMap extends React.Component {
     };
     return (
       <div className="treemap">
+        <MuiSlider dates={dates} onChange={(event, newValue) => this.setState({week: newValue})}/>
         <Button variant="contained" color="primary" className={classes.button}
           onClick={() => this.setState({ useCirclePacking: !useCirclePacking })}
-        >Toggle Circle / Rectangle</Button>
+        >{this.state.useCirclePacking ? "Square View" : "Circle View"}</Button>
         <br />
         <Treemap {...treeProps} colorType='literal' />
         {hoveredNode && hoveredNode.data && hoveredNode.data.name}
@@ -118,6 +122,7 @@ class TreeMap extends React.Component {
         <Button variant="contained" color="primary" className={classes.button}
           onClick={() => this.changeData(-1, null)} disabled={this.state.granularity === 0}
         >Back</Button>
+        {this.state.week}
       </div>
     );
   }
