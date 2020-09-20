@@ -4,6 +4,9 @@ import { GoogleMap, withScriptjs, withGoogleMap, Marker, Circle } from "react-go
 import styles from './GoogleMapsStyles.js';
 
 const test_country_data = [["United States", 37.090240, -95.712891, 203], ["Canada", 56.130367, -106.346771, 1234]]
+function numDigits(number) {
+  return number.toString().length;
+}
 
 function MapSetUp() {
   return (
@@ -28,6 +31,7 @@ function MapSetUp() {
             fontWeight: 'bold',
             fontSize: '12px',
             text: String(country[3]),
+            scale: numDigits(country[3])
           }}
         />
       ))}

@@ -7,8 +7,8 @@ import {
 
 import Notfound from "./notfound.js";
 import Map from '../pages/Map.js';
-import Plot from '../pages/Plot.js';
-import TreeMap from '../pages/TreeMap.js';
+// import Plot from '../pages/Plot.js';
+// import TreeMap from '../pages/TreeMap.js';
 
 class Routing extends React.Component {
   render() {
