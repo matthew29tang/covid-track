@@ -1,9 +1,10 @@
 import React from 'react';
 import {curveCatmullRom} from 'd3-shape';
 import Styled from "styled-components";
+// import DiscreteColorLegend from 'legends/discrete-color-legend';
 // import { withStyles } from '@material-ui/core/styles';
 
-import {XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries} from 'react-vis';
+import {XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, MarkSeries, DiscreteColorLegend} from 'react-vis';
 
 // sample test data for data 1 on first-series
 var data1 = [{x: 1, y: 3}, {x: 2, y: 5}, {x: 3, y: 10}, {x: 4, y: 2}];
@@ -11,21 +12,50 @@ var data1 = [{x: 1, y: 3}, {x: 2, y: 5}, {x: 3, y: 10}, {x: 4, y: 2}];
 // x is set from 1 to length for time, y is the cases - currently random
 var data2 = [];
 var i;
-for (i = 1; i < 10; i++) {
+for (i = 1; i < 9; i++) {
   data2.push({x: i, y: Math.floor(Math.random() * 10)});
 }
 
 const handleLogout = (evt) => {};
 
+//for the dates
+const WORDS = ['placeholder', '01/20/20', '01/27/20', '02/04/20','02/11/20', '02/18/20','02/25/20', '03/01/20', '03/08/20',
+  // <tspan>
+  //   <tspan x="0" dy="1em">
+  //     Multiline
+  //   </tspan>
+  //   <tspan x="0" dy="1em">
+  //     dogs
+  //   </tspan>
+  // </tspan>
+];
+
+//for the legend
+const ITEMS = [
+  'Options'
+];
+
 export default function Plotter(props) {
   return (
     <Wrapper>
       <button onClick={()=> handleLogout()}>Logout</button> 
-      <XYPlot width={300} height={300}>
+      <DiscreteColorLegend height={100} width={100} items={ITEMS} />
+      <XYPlot width={400} height={400}>
+        {/* <XAxis top={0} hideLine tickValues={[0, 1, 3, 4, 5]} title="X" />
+        <XAxis tickFormat={v => `Value is ${v}`} tickLabelAngle={-90} />
+        <YAxis hideTicks />
+        <YAxis left={50} tickFormat={v => v * v} />
+        <YAxis hideLine left={150} tickFormat={v => WORDS[v]} />
+        <MarkSeries
+          data={[{x: 0, y: 0}, {x: 5, y: 5}]}
+          opacity={0}
+          opacityType="linear"
+        /> */}
         <HorizontalGridLines style={{stroke: '#B7E9ED'}} />
         <VerticalGridLines style={{stroke: '#B7E9ED'}} />
         <XAxis
-          title="Time (weeks since January)"
+          tickFormat={v => `Value is ${WORDS[v]}`} tickLabelAngle={-90}
+          title="Time (date by week)"
           style={{
             line: {stroke: '#ADDDE1'},
             ticks: {stroke: '#ADDDE1'},
