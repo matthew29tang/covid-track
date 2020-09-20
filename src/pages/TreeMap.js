@@ -5,25 +5,8 @@ import Button from '@material-ui/core/Button';
 import MuiSlider from './MuiSlider.js';
 import Grid from '@material-ui/core/Grid';
 import Plot from './Plot.js';
-
 import { dates, ThemeContext } from '../data/data.js';
 
-var countryData = [
-  ['North America', 'United States', '30', '50'],
-  ['North America', 'Canada', '20', '25'],
-  ['North America', 'Mexico', '10', '20'],
-  ['South America', 'Brazil', '5', '50'],
-  ['South America', 'Argentina', '10', '15'],
-  ['Asia', 'China', '10', '11']
-]
-
-var continentData = [
-  ['North America', '60', '50'],
-  ['South America', '20', '25'],
-  ['Asia', '10', '20'],
-]
-
-var DATA = [continentData, countryData]
 const COLORS = ['#A7ADC6', '#8797AF', '#56667A', '#9098B6', '#788AA5', '#A9B5C6']
 
 const styles = theme => ({
@@ -157,6 +140,7 @@ class TreeMap extends React.Component {
             }
           }
           } />
+          Use the slider to traverse through time.
         <br />
         <Grid container spacing={0} justify="center" alignItems="center">
           <Grid item xs={4}>
@@ -182,7 +166,7 @@ class TreeMap extends React.Component {
         <br /><br />
         The right graph shows the total cummulative cases over time.
         <br /><br />
-        Panel Data taken from: CSSEGISandData (JHU)
+        Panel Data taken from: CSSEGISandData (JHU) [frozen as of 9/20/20]
       </div>
     );
   }

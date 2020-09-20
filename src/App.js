@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Papa from 'papaparse';
 
 import Routing from './router/Routing.js';
@@ -45,11 +46,23 @@ class App extends React.Component {
           <AppBar position="static" >
             <Toolbar>
               <Router>
-                <div style={{ flex: 1, fontSize: "19px" }}><NavLink activeClassName="active" className="link" to={"/"} type="menu">CoVisualize</NavLink></div>
-                {/*
-                <NavLink activeClassName="active" className="link" to={"/treemap/"} type="menu" style={{ marginRight: '10px' }}>
-                  <Button color="inherit">Treemap</Button>
-                </NavLink> */}
+                <div style={{ flex: 1, fontSize: "19px", textAlign: "left" }}><NavLink activeClassName="active" className="link" to={"/"} type="menu">CoVisualize</NavLink></div>
+                
+                <NavLink activeClassName="active" className="link" to={"/"} type="menu" style={{ marginRight: '10px' }}>
+                  <Button color="inherit">Rect Plot</Button>
+                </NavLink>
+                <NavLink activeClassName="active" className="link" to={"/map/"} type="menu" style={{ marginRight: '10px' }}>
+                  <Button color="inherit">Map</Button>
+                </NavLink>
+                <NavLink activeClassName="active" className="link" to={"/global-graph/"} type="menu" style={{ marginRight: '10px' }}>
+                  <Button color="inherit">Global Graph</Button>
+                </NavLink> 
+                <NavLink activeClassName="active" className="link" to={"/us-graph/"} type="menu" style={{ marginRight: '10px' }}>
+                  <Button color="inherit">US Graph</Button>
+                </NavLink>  
+                <NavLink activeClassName="active" className="link" to={"/about/"} type="menu" style={{ marginRight: '10px' }}>
+                  <Button color="inherit">About</Button>
+                </NavLink> 
               </Router>
             </Toolbar>
           </AppBar>

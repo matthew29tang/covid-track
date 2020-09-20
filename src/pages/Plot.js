@@ -4,7 +4,7 @@ import Styled from "styled-components";
 import { dates, ThemeContext } from '../data/data.js';
 import Grid from '@material-ui/core/Grid';
 
-import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, MarkSeries, DiscreteColorLegend, Crosshair } from 'react-vis';
+import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, DiscreteColorLegend } from 'react-vis';
 
 export default class Plotter extends React.Component {
   static contextType = ThemeContext;
