@@ -47,12 +47,12 @@ class TreeMap extends React.Component {
           this.DELTAS[dataset][row].unshift([this.DATA[dataset][row][0]]);
         }
         // Calculate deltas
-        for (var col = 2 + dataset; col < this.DATA[dataset][row].length; col++) {
+        for (var col = 4 + dataset; col < this.DATA[dataset][row].length; col++) {
           var curr = this.DATA[dataset][row][col] - this.DATA[dataset][row][col - 1];
           var res = 1;
           if (curr === 0) {
             res = 0;
-          } else if (this.DATA[dataset][row][col - 1] === 0) {
+          } else if (this.DATA[dataset][row][col - 1] == "0") {
             res = 1;
           } else {
             res = Math.round(curr / this.DATA[dataset][row][col - 1] * 100) / 100;
@@ -84,10 +84,14 @@ class TreeMap extends React.Component {
     for (let i = 0; i < data.length; i++) {
       if (granularity === 0 || (granularity > 0 && this.state.query[this.state.query.length - 1].includes(data[i][0]))) {
         var cases = data[i][1 + granularity + week];
-        console.log(data[i])
+
+        if (cases == null || cases === 0 || cases === "0") {
+          continue;
+        }
+
         leaves.push({
           name: data[i][granularity] + ' (' + cases + ')',
-          size: Math.log(cases + 1) + 1,
+          size: Math.log(cases + 1) + 0.2,
           color: this._getColor(),
           style: {
             border: 'thin solid blue'
@@ -153,25 +157,28 @@ class TreeMap extends React.Component {
             }
           }
           } />
-
-        <Button variant="contained" color="primary" className={classes.button}
-          onClick={() => this.setState({ useCirclePacking: !useCirclePacking })}
-        >{this.state.useCirclePacking ? "Square View" : "Circle View"}</Button>
         <br />
         <Grid container spacing={0} justify="center" alignItems="center">
           <Grid item xs={4}>
-            <Treemap {...treeProps} colorType='literal' />
+
+            <Button variant="contained" color="primary" className={classes.button} style={{ marginLeft: '100px' }}
+              onClick={() => this.changeData(-1, null)} disabled={this.state.granularity === 0}
+            >Back</Button>
+
+            <Button variant="contained" color="primary" className={classes.button} style={{ float: 'center' }}
+              onClick={() => this.setState({ useCirclePacking: !useCirclePacking })}
+            >{this.state.useCirclePacking ? "Square View" : "Circle View"}</Button>
+
+            <Treemap {...treeProps} colorType='literal' sortFunction={(a, b) => b.value - a.value} />
           </Grid>
           <Grid item xs={1} />
           <Grid item xs={7}>
-            <Plot />
+            <Plot granularity={this.state.granularity} query={this.state.query} />
           </Grid>
-          
+
         </Grid>
         <br />
-        <Button variant="contained" color="primary" className={classes.button}
-          onClick={() => this.changeData(-1, null)} disabled={this.state.granularity === 0}
-        >Back</Button>
+
 
       </div>
     );
