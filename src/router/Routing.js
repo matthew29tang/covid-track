@@ -7,8 +7,8 @@ import {
 
 import Notfound from "./notfound.js";
 import Map from '../pages/Map.js';
-// import Plot from '../pages/Plot.js';
-// import TreeMap from '../pages/TreeMap.js';
+import Plot from '../pages/Plot.js';
+import TreeMap from '../pages/TreeMap.js';
 
 class Routing extends React.Component {
   render() {
@@ -17,7 +17,8 @@ class Routing extends React.Component {
         <div className="Router">
           <Switch>
             <Route exact path="/" component={Map} />
-            {/* <Route exact path="/" component={TreeMap} /> */}
+            <Route path="/treemap/" component={TreeMap} />
+            <Route path="/plot/" component={Plot} />
             <Route component={Notfound} />
           </Switch>
         </div>
