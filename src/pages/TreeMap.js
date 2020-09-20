@@ -4,7 +4,7 @@ import { Treemap } from 'react-vis';
 import Button from '@material-ui/core/Button';
 import MuiSlider from './MuiSlider.js';
 
-import { dates } from '../data/data.js';
+import { dates, ThemeContext } from '../data/data.js';
 
 var countryData = [
   ['North America', 'United States', '30', '50'],
@@ -31,8 +31,11 @@ const styles = theme => ({
 });
 
 class TreeMap extends React.Component {
-  constructor() {
-    super();
+  static contextType = ThemeContext;
+
+  constructor(props, context) {
+    super(props);
+    console.log(context.data);
     this.state = {
       hoveredNode: false,
       treemapData: this.getData(0),
