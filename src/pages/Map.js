@@ -11,7 +11,7 @@ function numDigits(number) {
 function MapSetUp() {
   return (
     <GoogleMap 
-      defaultZoom={10} 
+      defaultZoom={5} 
       defaultCenter={{ lat: 37.871593, lng: -122.272743}}
       defaultOptions={{
         styles: styles
@@ -43,13 +43,13 @@ const WrappedMap = withScriptjs(withGoogleMap(MapSetUp));
 
 export default function Map() { 
     return (
-      <div style={{width: '100vw', height: '100vh'}}>
+
         <WrappedMap 
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-          loadingElement={<div style={{ height:"100%"}} />}
-          containerElement={<div style={{ height:"100%"}} />}
-          mapElement={<div style={{ height:"100%"}} />}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `84vh`}} />}
+          mapElement={<div style={{ height: `84vh`, }} />}
         />
-      </div>
+
     );
 }

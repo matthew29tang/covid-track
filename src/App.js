@@ -49,7 +49,7 @@ class App extends React.Component {
             alignItems="center"
             justify="center"
           >
-            <Box width="75%" maxWidth={1000}>
+            <Box width="85%" maxWidth={1500}>
               {this.DATA.length > 0 ? <Routing /> : ''}
             </Box>
           </Grid>
