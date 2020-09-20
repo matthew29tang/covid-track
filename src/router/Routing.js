@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Notfound from "./notfound.js";
-import Plot from '../pages/Plot.js';
+import Map from '../pages/Map.js';
 
 class Routing extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Routing extends React.Component {
       <Router>
         <div className="Router">
           <Switch>
-            <Route exact path="/" component={Plot} />
+            <Route exact path="/" component={Map} />
             <Route component={Notfound} />
           </Switch>
         </div>
