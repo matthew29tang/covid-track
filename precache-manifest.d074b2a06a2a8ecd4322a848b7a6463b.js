@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ece7650e33b5e95f2a18fe4a2c3ec965",
+    "revision": "0129dd11a9da0ea685d0ccdc52f3d229",
     "url": "/covisualize/index.html"
   },
   {
-    "revision": "39f7dd35a595c8fb1d27",
+    "revision": "956aa2184ea95e1207dd",
     "url": "/covisualize/static/css/main.0257887c.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/covisualize/static/js/2.5c59c416.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "39f7dd35a595c8fb1d27",
-    "url": "/covisualize/static/js/main.b8a0f005.chunk.js"
+    "revision": "956aa2184ea95e1207dd",
+    "url": "/covisualize/static/js/main.9d503f37.chunk.js"
   },
   {
     "revision": "cb2ed3e31c4786a636f9",

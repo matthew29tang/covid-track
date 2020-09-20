@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/covisualize/static/css/main.0257887c.chunk.css",
-    "main.js": "/covisualize/static/js/main.b8a0f005.chunk.js",
-    "main.js.map": "/covisualize/static/js/main.b8a0f005.chunk.js.map",
+    "main.js": "/covisualize/static/js/main.9d503f37.chunk.js",
+    "main.js.map": "/covisualize/static/js/main.9d503f37.chunk.js.map",
     "runtime-main.js": "/covisualize/static/js/runtime-main.83aec8ef.js",
     "runtime-main.js.map": "/covisualize/static/js/runtime-main.83aec8ef.js.map",
     "static/js/2.5c59c416.chunk.js": "/covisualize/static/js/2.5c59c416.chunk.js",
     "static/js/2.5c59c416.chunk.js.map": "/covisualize/static/js/2.5c59c416.chunk.js.map",
     "index.html": "/covisualize/index.html",
-    "precache-manifest.9513822c51915db2683c312c593b65f5.js": "/covisualize/precache-manifest.9513822c51915db2683c312c593b65f5.js",
+    "precache-manifest.d074b2a06a2a8ecd4322a848b7a6463b.js": "/covisualize/precache-manifest.d074b2a06a2a8ecd4322a848b7a6463b.js",
     "service-worker.js": "/covisualize/service-worker.js",
     "static/css/main.0257887c.chunk.css.map": "/covisualize/static/css/main.0257887c.chunk.css.map",
     "static/js/2.5c59c416.chunk.js.LICENSE.txt": "/covisualize/static/js/2.5c59c416.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.83aec8ef.js",
     "static/js/2.5c59c416.chunk.js",
     "static/css/main.0257887c.chunk.css",
-    "static/js/main.b8a0f005.chunk.js"
+    "static/js/main.9d503f37.chunk.js"
   ]
 }
